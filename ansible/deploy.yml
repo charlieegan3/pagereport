@@ -1,4 +1,4 @@
-- hosts: pagereport
+- hosts: webservers
   remote_user: root
   vars:
     path: "/root/pagereport"
