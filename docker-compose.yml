@@ -1,6 +1,6 @@
 selenium:
   container_name: selenium
-  image: vvoyer/docker-selenium-firefox-chrome
+  image: selenium/standalone-firefox
   ports:
    - "4444:4444"
   privileged: true
