@@ -4,6 +4,7 @@ selenium:
   ports:
    - "4444:4444"
   privileged: true
+  restart: always
 web:
   container_name: web
   build: .
@@ -11,6 +12,7 @@ web:
     - selenium:selenium
   ports:
    - "8080:8080"
+  restart: always
 nginx:
   build: ./nginx
   container_name: nginx
@@ -18,3 +20,4 @@ nginx:
     - "80:80"
   links:
     - web:web
+  restart: always
