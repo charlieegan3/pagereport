@@ -1,0 +1,3 @@
+package: github.com/charlieegan3/webimages
+import:
+- package: sourcegraph.com/sourcegraph/go-selenium

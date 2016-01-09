@@ -1,0 +1,13 @@
+selenium:
+  container_name: selenium
+  image: vvoyer/docker-selenium-firefox-chrome
+  ports:
+   - "4444:4444"
+  privileged: true
+web:
+  container_name: web
+  build: .
+  links:
+    - selenium:selenium
+  ports:
+   - "3000:3000"
