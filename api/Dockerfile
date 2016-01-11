@@ -1,4 +1,4 @@
-FROM ianneub/go:latest
+FROM golang:latest
 ADD . /usr/local/go/src/github.com/charlieegan3/pagereport/api
 WORKDIR /usr/local/go/src/github.com/charlieegan3/pagereport/api
 RUN go get sourcegraph.com/sourcegraph/go-selenium
