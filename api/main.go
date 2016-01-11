@@ -3,13 +3,14 @@ package main
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io"
 	"log"
 	"net/http"
 	"net/url"
 	"os"
 
-	"github.com/charlieegan3/pagereport/service"
+	"github.com/charlieegan3/pagereport/api/service"
 )
 
 func respondWithError(err error, w http.ResponseWriter) {
@@ -60,6 +61,7 @@ func serviceHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	fmt.Println("Starting...")
 	if len(os.Args) == 1 {
 		log.Fatal("Missing PORT parameter")
 	}

@@ -1,13 +1,13 @@
 selenium:
   container_name: selenium
-  image: selenium/standalone-firefox
+  build: ./selenium
   ports:
    - "4444:4444"
   privileged: true
   restart: always
-web:
-  container_name: web
-  build: .
+api:
+  container_name: api
+  build: ./api
   links:
     - selenium:selenium
   ports:
@@ -19,5 +19,5 @@ nginx:
   ports:
     - "80:80"
   links:
-    - web:web
+    - api:api
   restart: always
