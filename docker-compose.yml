@@ -13,6 +13,12 @@ api:
   ports:
    - "8080:8080"
   restart: always
+web:
+  container_name: web
+  build: ./web
+  ports:
+   - "8081:8081"
+  restart: always
 nginx:
   build: ./nginx
   container_name: nginx
@@ -20,4 +26,5 @@ nginx:
     - "80:80"
   links:
     - api:api
+    - web:web
   restart: always

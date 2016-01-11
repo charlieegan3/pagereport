@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <title>pagereport</title>
+    <script>
+      function fetch() {
+        var urlField = document.getElementById("url-field");
+        var selectorField = document.getElementById("selector-field");
+
+		var request = new XMLHttpRequest();
+        var queryString = '?url=' + urlField.value + '&selector=' + selectorField.value;
+		request.open('GET', '/api/service' + queryString, true);
+
+		request.onload = function() {
+		  if (request.status >= 200 && request.status < 400) {
+			var data = JSON.parse(request.responseText);
+            console.log(data);
+            document.getElementById("response-text").innerHTML = data.text;
+            var image = document.getElementById("response-image");
+            image.setAttribute("src", "data:image/png;base64," + data.image);
+		  } else {
+            document.getElementById("response-text").innerHTML = request.responseText;
+		  }
+		};
+
+		request.onerror = function() {
+          document.getElementById("response-text").innerHTML = request.responseText;
+		};
+
+        console.log("sending...");
+		request.send();
+      }
+    </script>
+  </head>
+  <body>
+    <input id="url-field" name="url" placeholder="url"/>
+    <br/>
+    <input id="selector-field" name="selector" placeholder="selector"/>
+    <br/>
+    <button onclick="fetch()">Go</button>
+    <p id="response-text"></p>
+    <img id="response-image" src="" />
+  </body>
+</html>
