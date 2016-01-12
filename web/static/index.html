@@ -3,6 +3,9 @@
     <title>pagereport</title>
     <script>
       function fetch() {
+        document.getElementById("response-text").innerHTML = "loading...";
+        var image = document.getElementById("response-image");
+        image.setAttribute("src", "data:image/png;base64,");
         var urlField = document.getElementById("url-field");
         var selectorField = document.getElementById("selector-field");
 
@@ -26,7 +29,6 @@
           document.getElementById("response-text").innerHTML = request.responseText;
 		};
 
-        console.log("sending...");
 		request.send();
       }
     </script>
