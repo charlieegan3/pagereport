@@ -7,7 +7,7 @@
         var selectorField = document.getElementById("selector-field");
 
 		var request = new XMLHttpRequest();
-        var queryString = '?url=' + urlField.value + '&selector=' + selectorField.value;
+        var queryString = '?url=' + encodeURIComponent(urlField.value) + '&selector=' + encodeURIComponent(selectorField.value);
 		request.open('GET', '/api/service' + queryString, true);
 
 		request.onload = function() {
