@@ -2,15 +2,23 @@ package main
 
 import (
 	"fmt"
-	"log"
-	"net/http"
 	"os"
+
+	"github.com/azer/crud"
+	_ "github.com/lib/pq"
 )
 
+var DB *crud.DB
+
 func main() {
-	fmt.Println("Starting...")
-	if len(os.Args) == 1 {
-		log.Fatal("Missing PORT parameter")
+	DB, err := crud.Connect("postgres", os.Getenv("DATABASE_URL"))
+	if err != nil {
+		fmt.Println(err)
+		return
 	}
-	panic(http.ListenAndServe(":"+os.Args[1], http.FileServer(http.Dir("static"))))
+	err = DB.Ping()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 }

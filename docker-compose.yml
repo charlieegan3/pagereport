@@ -13,11 +13,25 @@ api:
   ports:
    - "8080:8080"
   restart: always
+postgres:
+  container_name: postgres
+  image: postgres:9.4.5
+  environment:
+    POSTGRES_USER: "${POSTGRES_USER}"
+    POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+  ports:
+    - "5432:5432"
+  volumes:
+    - pagereport-postgres:/var/lib/postgresql/data
 web:
   container_name: web
   build: ./web
+  environment:
+    DATABASE_URL: "${DATABASE_URL}"
   ports:
    - "8081:8081"
+  links:
+    - postgres:postgres
   restart: always
 nginx:
   build: ./nginx
