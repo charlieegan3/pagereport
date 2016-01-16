@@ -19,6 +19,10 @@
 			"Rev": "7a41237eda4ca971bdcbba00d459901be8221a19"
 		},
 		{
+			"ImportPath": "github.com/eknkc/amber",
+			"Rev": "144da19a9994994c069f0693294a66dd310e14a4"
+		},
+		{
 			"ImportPath": "github.com/lib/pq",
 			"Comment": "go1.0-cutoff-63-g11fc39a",
 			"Rev": "11fc39a580a008f1f39bb3d11d984fb34ed778d9"
