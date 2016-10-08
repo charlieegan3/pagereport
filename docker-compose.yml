@@ -1,47 +1,15 @@
 selenium:
   container_name: selenium
-  build: ./selenium
+  image: selenium/standalone-firefox
   ports:
    - "4444:4444"
   privileged: true
-  restart: always
-api:
-  container_name: api
-  build: ./api
+service:
+  container_name: service
+  build: ./service
   links:
-    - selenium:selenium
-  ports:
-   - "8080:8080"
-  restart: always
-postgres:
-  container_name: postgres
-  image: postgres:9.4.5
+    - selenium
   environment:
-    POSTGRES_USER: "${POSTGRES_USER}"
-    POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+    PORT: 3000
   ports:
-    - "5432:5432"
-  volumes:
-    - pagereport-postgres:/var/lib/postgresql/data
-web:
-  container_name: web
-  build: ./web
-  environment:
-    DATABASE_URL: "${DATABASE_URL}"
-    PORT: "8081"
-  ports:
-   - "8081:8081"
-  links:
-    - postgres:postgres
-  volumes:
-    - "./web:/app"
-  restart: always
-nginx:
-  build: ./nginx
-  container_name: nginx
-  ports:
-    - "80:80"
-  links:
-    - api:api
-    - web:web
-  restart: always
+   - "3000:3000"
